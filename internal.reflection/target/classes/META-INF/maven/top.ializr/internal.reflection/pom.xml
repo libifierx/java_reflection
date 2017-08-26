@@ -15,6 +15,7 @@
 		<junit.version>4.11</junit.version>
 		<log4j2.version>2.3</log4j2.version>
 		<disruptor.version>3.3.2</disruptor.version>
+		<commons-lang.version>3.1</commons-lang.version>
 	</properties>
 
 	<dependencies>
@@ -25,27 +26,34 @@
 			<scope>test</scope>
 		</dependency>
 		<!-- ====================log4j2 relative configure======================== -->
-			<dependency>
-				<groupId>org.apache.logging.log4j</groupId>
-				<artifactId>log4j-api</artifactId>
-				<version>${log4j2.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.apache.logging.log4j</groupId>
-				<artifactId>log4j-core</artifactId>
-				<version>${log4j2.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.apache.logging.log4j</groupId>
-				<artifactId>log4j-slf4j-impl</artifactId>
-				<version>${log4j2.version}</version>
-			</dependency>
-			<!-- disruptor relative configure -->
-			<dependency>
-				<groupId>com.lmax</groupId>
-				<artifactId>disruptor</artifactId>
-				<version>${disruptor.version}</version>
-			</dependency>
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-api</artifactId>
+			<version>${log4j2.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-core</artifactId>
+			<version>${log4j2.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-slf4j-impl</artifactId>
+			<version>${log4j2.version}</version>
+		</dependency>
+		<!-- disruptor relative configure -->
+		<dependency>
+			<groupId>com.lmax</groupId>
+			<artifactId>disruptor</artifactId>
+			<version>${disruptor.version}</version>
+		</dependency>
+
+<!-- 		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+			<version>${commons-lang3.version}</version>
+		</dependency> -->
+
 	</dependencies>
 
 	<profiles>
@@ -62,7 +70,7 @@
 			</properties>
 		</profile>
 	</profiles>
-	
+
 	<build>
 		<plugins>
 			<plugin>

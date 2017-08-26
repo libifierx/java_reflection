@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration status="WARN" monitorInterval="300">
+
+	<Properties>
+		<Property name="LOG_HOME">/wls/applogs/rtlog/test</Property>
+		<Property name="LOG_HOME_BIZ">${LOG_HOME}/biz</Property>
+		<Property name="performance">%d{yyyy-MM-dd HH:mm:ss.SSS} %msg%n</Property>
+		<Property name="business">%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %c{1} - %msg%n</Property>
+	</Properties>
+	<appenders>
+		<Console name="Console" target="SYSTEM_OUT">
+			<PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %c{1} - %msg%n" />
+		</Console>
+		<RollingRandomAccessFile name="bizRolling"
+			fileName="${LOG_HOME_BIZ}/biz.log" filePattern="${LOG_HOME_BIZ}/biz.log.%d{yyyy-MM-dd}.%i.zip"
+			immediateFlush="false" append="true">
+			<Filters>
+				<ThresholdFilter level="ERROR" onMatch="DENY"
+					onMismatch="ACCEPT" />
+			</Filters>
+			<PatternLayout>
+				<Pattern>${business}</Pattern>
+				<Charset>UTF-8</Charset>
+			</PatternLayout>
+			<Policies>
+				<TimeBasedTriggeringPolicy interval="1"
+					modulate="true" />
+				<SizeBasedTriggeringPolicy size="500 MB" />
+			</Policies>
+			<DefaultRolloverStrategy max="1000" />
+		</RollingRandomAccessFile>
+	</appenders>
+
+	<loggers>
+		<AsyncLogger name="top.ializr.snowflake.evolution.SfXSecsId" level="INFO"
+			additivity="false">
+			<appender-ref ref="bizRolling" />
+		</AsyncLogger>
+
+		<!-- AsyncRoot -->
+		<AsyncRoot level="INFO">
+			<appender-ref ref="bizRolling" />
+		</AsyncRoot>
+	</loggers>
+
+</configuration>
